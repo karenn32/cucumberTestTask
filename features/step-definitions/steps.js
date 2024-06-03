@@ -5,10 +5,10 @@ Given(/^User is located on the main page of saucedemo website$/, async () => {
     await loginPage.open();
 });
 
-When(/^User clicks “Login” button$/, async () => {
-    await loginPage.login('', '');
+When(/^User logins with (.*) and (.*)$/, async (username, password) => {
+    await loginPage.login(username, password);
 });
 
-Then(/^User should see “Epic sadface: Username is required” error message$/, async () => {
-    await expect(loginPage.loginErrorText).toBePresent();
+Then(/^User should see (.*) error message$/, async (message) => {
+    await expect(loginPage.loginErrorText).toHaveText(message);
 });
